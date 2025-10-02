@@ -5,10 +5,6 @@ const avatarUrl = "https://sea1.discourse-cdn.com/freecodecamp";
 
 const postsContainer = document.getElementById("posts-container");
 
-const showLatestPosts = (data) => {
-
-};
-
 const fetchData = async () => {
     try {
         const res = await fetch(forumLatest);
@@ -21,6 +17,7 @@ const fetchData = async () => {
 
 fetchData();
 
-fetchData();
-
-const showLatestPosts = (data) => {};
+const showLatestPosts = (data) => {
+    const { topic_list, users } = data;
+    console.log(topic_list, users);
+};
