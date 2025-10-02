@@ -19,5 +19,6 @@ fetchData();
 
 const showLatestPosts = (data) => {
     const { topic_list, users } = data;
-    console.log(topic_list, users);
+    const { topics } = topic_list;
+    console.log(topics);
 };
