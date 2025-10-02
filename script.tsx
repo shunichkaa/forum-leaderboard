@@ -5,10 +5,15 @@ const avatarUrl = "https://sea1.discourse-cdn.com/freecodecamp";
 
 const postsContainer = document.getElementById("posts-container");
 
+const showLatestPosts = (data) => {
+
+};
+
 const fetchData = async () => {
     try {
         const res = await fetch(forumLatest);
         const data = await res.json();
+        showLatestPosts(data);
     } catch (err) {
         console.log(err);
     }
@@ -16,6 +21,6 @@ const fetchData = async () => {
 
 fetchData();
 
-const showLatestPosts = (data) => {
+fetchData();
 
-};
+const showLatestPosts = (data) => {};
