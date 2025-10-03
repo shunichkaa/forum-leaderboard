@@ -8,6 +8,18 @@ const postsContainer = document.getElementById("posts-container");
 const timeAgo = (time) => {
     const currentTime = new Date();
     const lastPost = new Date(time);
+
+    const minutes = Math.floor((currentTime - lastPost) / 60000);
+    const hours = Math.floor((currentTime - lastPost) / 3600000);
+    const days = Math.floor((currentTime - lastPost) / 86400000);
+
+    if (minutes < 60) {
+        return `${minutes}m ago`;
+    } else if (hours < 24) {
+        return `${hours}h ago`;
+    } else {
+        return `${days}d ago`;
+    }
 };
 
 const fetchData = async () => {
@@ -33,7 +45,8 @@ const showLatestPosts = (data) => {
             views,
             posts_count,
             slug,
-            posters,_id,
+            posters,
+            category_id,
             bumped_at,
         } = item;
 
