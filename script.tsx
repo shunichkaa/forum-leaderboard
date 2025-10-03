@@ -6,10 +6,8 @@ const avatarUrl = "https://sea1.discourse-cdn.com/freecodecamp";
 const postsContainer = document.getElementById("posts-container");
 
 const allCategories = {
-    299: {
-        category: "Career Advice",
-        className: "career"
-    }
+    299: { category: "Career Advice", className: "career" },
+    409: { category: "Project Feedback", className: "feedback" }
 };
 
 const timeAgo = (time) => {
@@ -57,8 +55,8 @@ const fetchData = async () => {
 fetchData();
 
 const showLatestPosts = (data) => {
-    const {topic_list, users} = data;
-    const {topics} = topic_list;
+    const { topic_list, users } = data;
+    const { topics } = topic_list;
 
     postsContainer.innerHTML = topics.map((item) => {
         const {
