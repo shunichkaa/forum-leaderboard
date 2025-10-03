@@ -28,11 +28,13 @@ const timeAgo = (time) => {
 };
 
 const viewCount = (views) => {
+    const thousands = Math.floor(views / 1000);
+
     if (views >= 1000) {
-        return Math.floor(views / 1000) + "k";
-    } else {
-        return views;
+        return `${thousands}k`;
     }
+
+    return views;
 };
 
 const fetchData = async () => {
@@ -48,8 +50,8 @@ const fetchData = async () => {
 fetchData();
 
 const showLatestPosts = (data) => {
-    const { topic_list, users } = data;
-    const { topics } = topic_list;
+    const {topic_list, users} = data;
+    const {topics} = topic_list;
 
     postsContainer.innerHTML = topics.map((item) => {
         const {
@@ -70,7 +72,7 @@ const showLatestPosts = (data) => {
       </td>
       <td></td>
       <td>${posts_count - 1}</td>
-      <td>${views}</td>
+<td>${viewCount(views)}</td>
       <td>${timeAgo(bumped_at)}</td>
     </tr>`;
     }).join("");
