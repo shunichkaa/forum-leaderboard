@@ -9,17 +9,22 @@ const timeAgo = (time) => {
     const currentTime = new Date();
     const lastPost = new Date(time);
 
-    const minutes = Math.floor((currentTime - lastPost) / 60000);
-    const hours = Math.floor((currentTime - lastPost) / 3600000);
-    const days = Math.floor((currentTime - lastPost) / 86400000);
+    const timeDifference = currentTime - lastPost;
+    const msPerMinute = 1000 * 60;
 
-    if (minutes < 60) {
-        return `${minutes}m ago`;
-    } else if (hours < 24) {
-        return `${hours}h ago`;
-    } else {
-        return `${days}d ago`;
+    const minutesAgo = Math.floor(timeDifference / msPerMinute);
+    const hoursAgo = Math.floor(minutesAgo / 60);
+    const daysAgo = Math.floor(hoursAgo / 24);
+
+    if (minutesAgo < 60) {
+        return `${minutesAgo}m ago`;
     }
+
+    if (hoursAgo < 24) {
+        return `${hoursAgo}h ago`;
+    }
+
+    return `${daysAgo}d ago`;
 };
 
 const fetchData = async () => {
@@ -51,14 +56,13 @@ const showLatestPosts = (data) => {
         } = item;
 
         return `
-    <tr>
-      <td>
-        <p class="post-title">${title}</p>
-      </td>
-      <td></td>
-      <td>${posts_count - 1}</td>
-      <td>${views}</td>
-      <td></td>
-    </tr>`;
-    }).join("");
-};
+  <tr>
+    <td>
+      <p class="post-title">${title}</p>
+    </td>
+    <td></td>
+    <td>${posts_count - 1}</td>
+    <td>${views}</td>
+    <td>${timeAgo(bumped_at)}</td>
+  </tr>`;
+    };
