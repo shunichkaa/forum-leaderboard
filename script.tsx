@@ -4,6 +4,7 @@ const forumCategoryUrl = "https://forum.freecodecamp.org/c/";
 const avatarUrl = "https://sea1.discourse-cdn.com/freecodecamp";
 
 const postsContainer = document.getElementById("posts-container");
+const allCategories = {};
 
 const timeAgo = (time) => {
     const currentTime = new Date();
@@ -50,8 +51,8 @@ const fetchData = async () => {
 fetchData();
 
 const showLatestPosts = (data) => {
-    const {topic_list, users} = data;
-    const {topics} = topic_list;
+    const { topic_list, users } = data;
+    const { topics } = topic_list;
 
     postsContainer.innerHTML = topics.map((item) => {
         const {
@@ -72,7 +73,7 @@ const showLatestPosts = (data) => {
       </td>
       <td></td>
       <td>${posts_count - 1}</td>
-<td>${viewCount(views)}</td>
+      <td>${viewCount(views)}</td>
       <td>${timeAgo(bumped_at)}</td>
     </tr>`;
     }).join("");
